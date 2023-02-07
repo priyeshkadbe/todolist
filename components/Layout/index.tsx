@@ -1,16 +1,16 @@
 import Navbar from "../Navbar";
 
-type PageProp={
+type PageProp = {
   children: JSX.Element | JSX.Element[];
-}
+};
 
-function Layout({children}:PageProp){
-  return(
+function Layout({ children }: PageProp) {
+  return (
     <div>
-    <Navbar />
-    {children}
+      <Navbar />
+      {children}
     </div>
-  )
+  );
 }
 
 export default Layout;
