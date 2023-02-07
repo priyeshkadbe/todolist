@@ -1,8 +1,10 @@
 import { FC } from "react";
 
-interface Props {}
+interface Props {
+  children:React.ReactNode
+}
 
-const HomePage: FC<Props> = (props): JSX.Element => {
+function HomePage({children}:Props) {
   return (
     <div className="bg-[#0F1425] h-screen snap-none">
       <div className="flex justify-center items-center p-4 md:p-6">
@@ -12,13 +14,14 @@ const HomePage: FC<Props> = (props): JSX.Element => {
           <form className="flex items-center justify-center">
             <input
               className="rounded-[10px] w-full p-[10px] border-none outline-none bg-[#0F1425] text-white mb-[10px]"
-              placeholder="Add your task..."
+              placeholder="Add New Task..."
               // take input from the form here
             />
             <button className="text-gray-200 text-xl cursor-pointer ml-6 mb-3 bg-[#044B11] px-4 py-2 rounded-sm md:rounded-lg hover:bg-[#6cd97e]">
               Add
             </button>
           </form>
+          {children}
         </div>
       </div>
     </div>

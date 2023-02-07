@@ -2,6 +2,7 @@ import Head from "next/head";
 
 import Layout from "../components/Layout";
 import HomePage from "../components/HomePage";
+import TasksList from "../components/HomePage/TasksList";
 
 export default function Home() {
   return (
@@ -14,7 +15,9 @@ export default function Home() {
       </Head>
       <main className="">
         <Layout>
-          <HomePage />
+          <HomePage>
+            <TasksList/>
+          </HomePage>
         </Layout>
       </main>
     </>
