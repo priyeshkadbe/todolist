@@ -3,7 +3,7 @@ import Head from "next/head";
 import Layout from "../components/Layout";
 import HomePage from "../components/HomePage";
 import TasksList from "../components/HomePage/TasksList";
-
+import CompletedTasks from "../components/HomePage/CompletedTasks";
 export default function Home() {
   return (
     <>
@@ -17,6 +17,7 @@ export default function Home() {
         <Layout>
           <HomePage>
             <TasksList/>
+            <CompletedTasks />
           </HomePage>
         </Layout>
       </main>

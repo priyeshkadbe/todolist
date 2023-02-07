@@ -1,17 +1,30 @@
+import { FiEdit } from "react-icons/fi";
+import { AiOutlineDelete } from "react-icons/ai";
+import { MdDoneAll } from "react-icons/md";
+
 function TasksList() {
   return (
-    <div className="bg-[#1E293B] p-2 md:p-4 rounded-sm md:rounded-lg">
-      <div>
-        <h1 className="text-xl text-gray-300">Your Tasks</h1>
-      </div>
-      <div className="pt-2 flex justify-between">
-        <div>
-          <h1 className="text-gray-500 text-lg">1. Your first task</h1>
-        </div>
-        <div className="flex gap-x-2">
-          <button className="bg-red-400 text-md px-4 py-2  rounded-sm ">Edit</button>
-          <button className="bg-red-400 text-md px-4 py-2 rounded-sm ">Mark as Done</button> 
-          <button className="bg-red-400 text-md px-4 py-2 rounded-sm ">Delete</button>
+    <div className=" p-2 md rounded-sm md:rounded-lg gap-y-2">
+      <div className="py-3 text-[#7d99e9]">YOUR RUNNING TASKS</div>
+      <div className="flex flex-col gap-2">
+        <div className="bg-[#1E293B] p-2 flex justify-between items-center">
+          <div>
+            <h1 className="text-gray-500 text-lg">1. Your first task</h1>
+          </div>
+          <div className="flex gap-x-2">
+            <FiEdit
+              size={25}
+              className="text-gray-400 cursor-pointer hover:text-gray-200"
+            />
+            <AiOutlineDelete
+              size={25}
+              className="text-gray-400 cursor-pointer hover:text-gray-200"
+            />
+            <MdDoneAll
+              size={25}
+              className="text-gray-400 cursor-pointer hover:text-gray-200"
+            />
+          </div>
         </div>
       </div>
     </div>
