@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import HomePage from "../components/HomePage";
 import TasksList from "../components/HomePage/TasksList";
 import CompletedTasks from "../components/HomePage/CompletedTasks";
+import AddNewTask from "../components/HomePage/AddNewTask";
 export default function Home() {
   return (
     <>
@@ -16,6 +17,7 @@ export default function Home() {
       <main className="">
         <Layout>
           <HomePage>
+            <AddNewTask/>
             <TasksList/>
             <CompletedTasks />
           </HomePage>
