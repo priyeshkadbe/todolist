@@ -3,6 +3,8 @@ import { FC } from "react";
 interface Props {}
 
 const Navbar = () => {
+
+ 
   return (
     <div className="w-full bg-[#1D2233] h-16">
       <div className="flex mx-auto justify-between  p-4 md:w-2/3">
