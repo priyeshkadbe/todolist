@@ -23,7 +23,7 @@ function Layout({ children }: PageProp) {
     setIsMetamaskNotInstalled
   } = useToDoListProvider();
 
-  useEffect(()=>{},[isConnected,isMetamaskNotInstalled])
+  
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState,useEffect } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { ethers } from "ethers";
 
@@ -32,20 +32,28 @@ const Navbar = ({
   setIsMetamaskNotInstalled
 }: Props) => {
 
-  
+  useEffect(()=>{
+    if (!window.ethereum) {
+      setIsMetamaskNotInstalled(true);
+      return;
+    }
+    // console.log("🚀 ~ file: index.tsx:38 ~ isMetamaskNotInstalled", isMetamaskNotInstalled)
+    console.log("🚀 ~ file: index.tsx:121 ~ isLoading", isLoading)
+  },[])
+
 
   async function connectWithMetamask() {
     try {
-      if (!window.ethereum) {
-        setIsError(true);
-        setIsMetamaskNotInstalled(true);
-        
-        setIsLoading(false);
-        return;
-      }
-        console.log("🚀 ~ file: index.tsx:45 ~ connectWithMetamask ~ setIsMetamaskNotInstalled", isMetamaskNotInstalled)
+      // if (!window.ethereum) {
+      //   setIsError(true);
+      //   setIsMetamaskNotInstalled(true);
+      //   setIsConnected(false);
+      //   setIsLoading(false);
+      //   return;
+      // }
+      //   console.log("🚀 ~ file: index.tsx:45 ~ connectWithMetamask ~ setIsMetamaskNotInstalled", isMetamaskNotInstalled)
       setIsLoading(true);
-      await window.ethereum.enable();
+      await window.ethereum.send('eth_requestAccounts');
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const accounts = await provider.listAccounts();
@@ -70,9 +78,11 @@ const Navbar = ({
       return;
     }
     setIsConnected(false);
-    window.ethereum.enable().then(() => {
-      window.ethereum = null;
-    });
+    setAddress('');
+    setChainId(null);
+    window.ethereum = null;
+    window.location.reload();
+  
   };
 
 
@@ -91,7 +101,7 @@ const Navbar = ({
           } */}
           
 
-          {
+          { !isConnected?
             <button
             className="bg-[#007fff] text-gray-200 px-4 py-2 rounded-md hover:text-gray-50"
             onClick={connectWithMetamask}
@@ -110,8 +120,16 @@ const Navbar = ({
              "connect"
             )}
           
+            </button>
+            :
+            <button
+            className="bg-[#007fff] text-gray-200 px-4 py-2 rounded-md hover:text-gray-50"
+            onClick={disconnectWithMetamask}
+          >
+          disconnect
           </button>
           }
+           
         </div>
       </div>
     </div>

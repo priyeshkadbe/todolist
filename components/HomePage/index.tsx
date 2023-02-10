@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC,useEffect } from "react";
 import { useToDoListProvider } from "../../provider/ToDoListProvider";
 
 interface Props {
@@ -19,7 +19,11 @@ function HomePage({children}:Props) {
     setAddress,
     chainId,
     setChainId,
+    isMetamaskNotInstalled,
+  setIsMetamaskNotInstalled
   } = useToDoListProvider();
+
+
   return (
     <div className="bg-[#0F1425] h-screen">
       
