@@ -1,3 +1,5 @@
+import React, { useContext } from 'react';
+
 import Head from "next/head";
 
 import Layout from "../components/Layout";
@@ -5,7 +7,11 @@ import HomePage from "../components/HomePage";
 import TasksList from "../components/HomePage/TasksList";
 import CompletedTasks from "../components/HomePage/CompletedTasks";
 import AddNewTask from "../components/HomePage/AddNewTask";
+import { ToDoListProvider } from "../provider/ToDoListProvider";
 export default function Home() {
+
+  //const { isConnected, isLoading, isError, address, chainId}=useMetamask();
+
   return (
     <>
       <Head>
