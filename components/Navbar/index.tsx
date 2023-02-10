@@ -43,6 +43,7 @@ const Navbar = ({
   async function connectWithMetamask() {
     try {
       setIsLoading(true);
+      await window.ethereum.enable();
       await window.ethereum.send("eth_requestAccounts");
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
