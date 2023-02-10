@@ -31,36 +31,7 @@ export const ToDoListProvider = ({ children }: Props) => {
   const [address, setAddress] = useState<string>('');
   const [chainId, setChainId] = useState<number>(0);
   const [isMetamaskNotInstalled,setIsMetamaskNotInstalled] = useState<boolean>(false);
-  // useEffect(() => {
-  //   // async function connectWithMetamask() {
-  //   //   try {
-  //   //     if (!window.ethereum) {
-  //   //       setIsError(true);
-  //   //       setIsLoading(false);
-  //   //       return;
-  //   //     }
-  //   //     const provider = new ethers.providers.Web3Provider(
-  //   //       window.ethereum
-  //   //     );
-  //   //     const signer = provider.getSigner();
-  //   //     const accounts = await provider.listAccounts();
-  //   //     const address = accounts[0];
-  //   //     const network = await provider.getNetwork();
-  //   //     const chainId = network.chainId;
-
-  //   //     setIsConnected(true);
-  //   //     setAddress(address);
-  //   //     setChainId(chainId);
-  //   //     setIsLoading(false);
-  //   //   } catch (error) {
-  //   //     setIsError(true);
-  //   //     setIsLoading(false);
-  //   //     //setChainId(null);
-  //   //   }
-  //   // }
-  //   // connectWithMetamask();
-  // }, []);
-
+  
   const value = {
     isConnected,
     setIsConnected,

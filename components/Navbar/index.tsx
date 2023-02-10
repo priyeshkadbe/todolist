@@ -79,7 +79,7 @@ const Navbar = ({
     }
     setIsConnected(false);
     setAddress('');
-    setChainId(null);
+    //setChainId(null);
     window.ethereum = null;
     window.location.reload();
   
