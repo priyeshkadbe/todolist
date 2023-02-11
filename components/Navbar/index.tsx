@@ -76,7 +76,7 @@ const Navbar = ({
     }
     setIsConnected(false);
     setAddress("");
-    //setChainId(null);
+    setChainId(0);
     window.ethereum = null;
     window.location.reload();
   };
