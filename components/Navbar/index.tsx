@@ -43,7 +43,7 @@ const Navbar = ({
     try {
       setIsLoading(true);
       await window.ethereum.enable();
-      window.ethereum.on("accountsChanged", async (accounts) => {
+      window.ethereum.on("accountsChanged", async (accounts:string[]) => {
         const address = accounts[0];
         const network = await provider.getNetwork();
         const chainid = network.chainId;
