@@ -96,7 +96,7 @@ const Navbar = ({
       } else {
         window.alert('Please switch to the Goerli testnet.');
         setIsConnected(false);
-        setAddress(null);
+        setAddress('');
       }
     } catch (error) {
       setIsError(true);
