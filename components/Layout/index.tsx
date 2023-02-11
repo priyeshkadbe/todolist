@@ -3,6 +3,9 @@ import MetaMaskNotFound from "../MetaMaskNotFound";
 import NotLoggedIn from "../NotLoggedIn";
 import React, { useContext,useEffect } from "react";
 import { useToDoListProvider } from "../../provider/ToDoListProvider";
+import Goerli from "../TestNets/Goerli"
+import {GOERLI_ID} from "../../utils/Constants"
+
 type PageProp = {
   children: JSX.Element | JSX.Element[];
 };
@@ -23,8 +26,6 @@ function Layout({ children }: PageProp) {
     setIsMetamaskNotInstalled
   } = useToDoListProvider();
 
-  
-
   return (
     <div>
       <Navbar
@@ -41,9 +42,7 @@ function Layout({ children }: PageProp) {
         isMetamaskNotInstalled={isMetamaskNotInstalled}
         setIsMetamaskNotInstalled={setIsMetamaskNotInstalled}
       />
-       {isMetamaskNotInstalled ? <MetaMaskNotFound /> : isConnected ? children : <NotLoggedIn />}
-      
-
+       {isMetamaskNotInstalled ? <MetaMaskNotFound /> : (isConnected && chainId===GOERLI_ID) ? children : <NotLoggedIn />}
     </div>
   );
 
