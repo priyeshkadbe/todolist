@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { ethers } from "ethers";
-import {GOERLI_ID} from "../../utils/Constants"
+import { GOERLI_ID } from "../../utils/Constants";
 
 interface Props {
   isConnected: boolean;
@@ -37,49 +37,28 @@ const Navbar = ({
       setIsMetamaskNotInstalled(true);
       return;
     }
-    // console.log("🚀 ~ file: index.tsx:38 ~ isMetamaskNotInstalled", isMetamaskNotInstalled)
-    console.log("🚀 ~ file: index.tsx:121 ~ isLoading", isLoading);
-   
-  }, []);
-
-  // useEffect(()=>{
-    
-  //   console.log("🚀 ~ file: index.tsx:70 ~ connectWithMetamask ~ setChainId", chainId)
-  // },[chainId])
-
-  // async function connectWithMetamask() {
-  //   try {
-  //     setIsLoading(true);
-  //     await window.ethereum.enable();
-  //     await window.ethereum.send("eth_requestAccounts");
-  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //     const signer = provider.getSigner();
-  //     const accounts = await provider.listAccounts();
-  //     const address = accounts[0];
-  //     const network = await provider.getNetwork();
-  //     const chainid = network.chainId;
-  //     setChainId(chainid);
-  //     setIsLoading(false);
-  //     if(chainId===GOERLI_ID){
-  //        setIsConnected(true);
-  //        setAddress(address);
-  //     } else {
-  //       window.alert('Please switch to the Goerli testnet.');
-  //       setIsConnected(false);
-  //       setAddress('');
-  //     }
-       
-  //   } catch (error) {
-  //     setIsError(true);
-  //     setIsLoading(false);
-  //     setChainId(chainId);
-  //   }  
-  // }
+  }, [setIsMetamaskNotInstalled]);
 
   async function connectWithMetamask() {
     try {
       setIsLoading(true);
       await window.ethereum.enable();
+      window.ethereum.on("accountsChanged", async (accounts) => {
+        const address = accounts[0];
+        const network = await provider.getNetwork();
+        const chainid = network.chainId;
+        setChainId(chainid);
+        setIsLoading(false);
+        if (chainid === GOERLI_ID) {
+          setIsConnected(true);
+          setAddress(address);
+        } else {
+          window.alert("Please switch to the Goerli testnet.");
+          setIsConnected(false);
+          setAddress("");
+        }
+      });
+
       await window.ethereum.send("eth_requestAccounts");
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
@@ -94,15 +73,15 @@ const Navbar = ({
         setIsConnected(true);
         setAddress(address);
       } else {
-        window.alert('Please switch to the Goerli testnet.');
+        window.alert("Please switch to the Goerli testnet.");
         setIsConnected(false);
-        setAddress('');
+        setAddress("");
       }
     } catch (error) {
       setIsError(true);
       setIsLoading(false);
       console.error(error);
-    }  
+    }
   }
 
   const disconnectWithMetamask = async () => {
