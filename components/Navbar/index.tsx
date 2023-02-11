@@ -58,6 +58,12 @@ const Navbar = ({
           setAddress("");
         }
       });
+      window.ethereum.on("networkChanged", async (networkId: number) => {
+        if (networkId !== GOERLI_ID) {
+          setIsConnected(false);
+          setAddress("");
+        }
+      });
 
       await window.ethereum.send("eth_requestAccounts");
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -83,6 +89,8 @@ const Navbar = ({
       console.error(error);
     }
   }
+
+  
 
   const disconnectWithMetamask = async () => {
     if (!isConnected) {
